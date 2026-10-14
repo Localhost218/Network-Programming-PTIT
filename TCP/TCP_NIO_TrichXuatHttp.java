@@ -1,14 +1,14 @@
+package TCP;
+
 import java.io.IOException;
 import java.net.InetSocketAddress;
 import java.nio.ByteBuffer;
 import java.nio.channels.SocketChannel;
 import java.nio.charset.StandardCharsets;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
-public class TCP_NIO_5fkQs6l8 {
+public class TCP_NIO_TrichXuatHttp {
     static final String STUDENT_CODE = "B23DCCN465";
-    static final String QUESTION_CODE = "5fkQs6l8";
+    static final String QUESTION_CODE = "tb3W0jLf";
     static final String HOST = "36.50.135.242";
     static final int PORT = 2211;
     static final int TIMEOUT_MS = 5000;
@@ -18,26 +18,38 @@ public class TCP_NIO_5fkQs6l8 {
 
         try (SocketChannel channel = SocketChannel.open()) {
             channel.socket().connect(new InetSocketAddress(HOST, PORT), TIMEOUT_MS);
-            channel.socket().setSoTimeout(TIMEOUT_MS);
 
             System.out.println("Send: " + request);
             writeFrame(channel, request);
 
-            StringBuilder jsonBuilder = new StringBuilder();
-            for (int i = 0; i < 2; i++) {
-                jsonBuilder.append(readFrame(channel));
+            StringBuilder httpBuilder = new StringBuilder();
+            for (int i = 0; i < 3; i++) {
+                httpBuilder.append(readFrame(channel));
             }
 
-            String fullJson = jsonBuilder.toString();
-            System.out.println("Receive: " + fullJson);
+            String fullHttpRequest = httpBuilder.toString();
+            System.out.println("Receive:\n" + fullHttpRequest);
 
-            String event = extractStringField(fullJson, "event");
-            String user = extractStringField(fullJson, "user");
-            boolean ok = extractBooleanField(fullJson, "ok");
+            String method = "";
+            String path = "";
+            String host = "";
 
-            String okValue = ok ? "1" : "0";
+            String[] lines = fullHttpRequest.split("\r\n");
+            if (lines.length > 0) {
+                String[] firstLineParts = lines[0].split(" ");
+                if (firstLineParts.length >= 2) {
+                    method = firstLineParts[0];
+                    path = firstLineParts[1];
+                }
+                for (String line : lines) {
+                    if (line.toLowerCase().startsWith("host:")) {
+                        host = line.substring(5).trim();
+                        break;
+                    }
+                }
+            }
 
-            String finalResult = "event=" + event + ";user=" + user + ";ok=" + okValue;
+            String finalResult = method + ";" + path + ";" + host;
             System.out.println("Send: " + finalResult);
             writeFrame(channel, finalResult);
 
@@ -77,24 +89,5 @@ public class TCP_NIO_5fkQs6l8 {
                 throw new IOException("Connection closed");
             }
         }
-    }
-
-    private static String extractStringField(String json, String field) {
-        // Tìm kiếm Regex dạng: "tên_trường":"giá_trị" (có thể có khoảng trắng)
-        Pattern pattern = Pattern.compile("\"" + field + "\"\\s*:\\s*\"([^\"]+)\"");
-        Matcher matcher = pattern.matcher(json);
-        if (matcher.find()) {
-            return matcher.group(1);
-        }
-        return "";
-    }
-
-    private static boolean extractBooleanField(String json, String field) {
-        Pattern pattern = Pattern.compile("\"" + field + "\"\\s*:\\s*(true|false)");
-        Matcher matcher = pattern.matcher(json);
-        if (matcher.find()) {
-            return Boolean.parseBoolean(matcher.group(1));
-        }
-        return false;
     }
 }

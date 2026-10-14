@@ -1,10 +1,12 @@
+package TCP;
+
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
 import java.net.InetSocketAddress;
 import java.net.Socket;
 
-public class TCP_Data_ftbwcKaW {
+public class TCP_Data_MaCaesar {
     static final String STUDENT_CODE = "B23DCCN465";
     static final String QUESTION_CODE = "ftbwcKaW";
     static final String HOST = "36.50.135.242";

@@ -1,3 +1,5 @@
+package TCP;
+
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.IOException;
@@ -8,7 +10,7 @@ import java.net.Socket;
 import java.nio.charset.StandardCharsets;
 import java.util.Scanner;
 
-public class TCP_Character_fZXUnOM6 {
+public class TCP_Character_LocTenMienEdu {
     private static final int PORT = 2208;
     private static final int TIMEOUT_MS = 5000;
 

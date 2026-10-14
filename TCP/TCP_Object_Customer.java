@@ -1,4 +1,4 @@
-import TCP.Laptop;
+package TCP;
 
 import java.io.IOException;
 import java.io.ObjectInputStream;
@@ -6,9 +6,9 @@ import java.io.ObjectOutputStream;
 import java.net.InetSocketAddress;
 import java.net.Socket;
 
-public class TCP_Object_UWa8dLaw {
+public class TCP_Object_Customer {
     static final String STUDENT_CODE = "B23DCCN465";
-    static final String QUESTION_CODE = "UWa8dLaw";
+    static final String QUESTION_CODE = "ONArENAD";
     static final String HOST = "36.50.135.242";
     static final int PORT = 2209;
     static final int TIMEOUT_MS = 5000;
@@ -20,21 +20,20 @@ public class TCP_Object_UWa8dLaw {
 
             try (ObjectInputStream in = new ObjectInputStream(socket.getInputStream());
                  ObjectOutputStream out = new ObjectOutputStream(socket.getOutputStream())){
-
                 System.out.println("Send: " + request);
                 out.writeObject(request);
                 out.flush();
 
-                Laptop laptop = (TCP.Laptop) in.readObject();
-                System.out.println("Receive: " + laptop);
+                TCP.Customer customer = (TCP.Customer) in.readObject();
+                System.out.println("Receive: " + customer);
 
-                laptop.reverseName();
-                laptop.reverseQuantity();
+                System.out.println("Username: "+ customer.normalizeUserName());
+                System.out.println("Name: " + customer.normalizeName());
+                System.out.println("Day of Birth: " + customer.normalizeDayOfBirth());
 
-                System.out.println("Send: " + laptop);
-                out.writeObject(laptop);
+                System.out.println("Send: " + customer);
+                out.writeObject(customer);
                 out.flush();
-
             } catch (ClassNotFoundException e) {
                 throw new RuntimeException(e);
             }

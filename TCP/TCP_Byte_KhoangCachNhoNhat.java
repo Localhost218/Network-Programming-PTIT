@@ -1,3 +1,5 @@
+package TCP;
+
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.net.InetSocketAddress;
@@ -5,7 +7,7 @@ import java.net.Socket;
 import java.nio.charset.StandardCharsets;
 import java.util.Arrays;
 
-public class TCP_Byte_galyZKFy {
+public class TCP_Byte_KhoangCachNhoNhat {
     static final String HOST = "36.50.135.242";
     static final int PORT = 2206;
     static final String STUDENT_CODE = "B23DCCN465";

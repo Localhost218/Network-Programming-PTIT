@@ -1,9 +1,11 @@
+package TCP;
+
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.net.Socket;
 
-public class TCP_Byte_ErncJF6t {
+public class TCP_Byte_SoLonThuHai {
     static final int PORT = 2206;
     static final String HOST = "36.50.135.242";
     static final String STUDENT_CODE = "B23DCCN465";

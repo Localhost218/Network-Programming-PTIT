@@ -1,8 +1,10 @@
+package TCP;
+
 import java.io.*;
 import java.net.Socket;
 import java.util.LinkedHashMap;
 
-public class TCP_Character_s5vdZWIo {
+public class TCP_Character_DemKyTuLap {
     static final int PORT = 2208;
     static final int TIMEOUT_MS = 5000;
     static final String HOST = "36.50.135.242";

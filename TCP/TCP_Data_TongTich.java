@@ -1,10 +1,12 @@
+package TCP;
+
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
 import java.net.InetSocketAddress;
 import java.net.Socket;
 
-public class TCP_Data_i7DEO1bX {
+public class TCP_Data_TongTich {
     static final int PORT = 2207;
     static final String HOST = "36.50.135.242";
     static final String STUDENT_CODE = "B23DCCN465";

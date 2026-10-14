@@ -1,3 +1,5 @@
+package TCP;
+
 import java.io.IOException;
 import java.net.InetSocketAddress;
 import java.net.Socket;
@@ -5,7 +7,7 @@ import java.util.Base64;
 import java.util.zip.GZIPInputStream;
 import java.util.zip.GZIPOutputStream;
 
-public class TCP_Gzip_2KTUhJu8 {
+public class TCP_Gzip_DaoChuoiMaBase64 {
     static final String STUDENT_CODE = "B23DCCN465";
     static final String QUESTION_CODE = "2KTUhJu8";
     static final String HOST = "36.50.135.242";
