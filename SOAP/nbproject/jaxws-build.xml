@@ -50,5 +50,22 @@
         <delete dir="${build.generated.dir}/jax-wsCache/CharacterService"/>
         <delete dir="${build.generated.sources.dir}/jax-ws/ptit/dblab/judge/network/server/soap"/>
     </target>
-    <target name="wsimport-client-generate" depends="wsimport-client-DataService, wsimport-client-CharacterService"/>
+    <target name="wsimport-client-ObjectService" depends="wsimport-init">
+        <mkdir dir="${build.generated.dir}/jax-wsCache/ObjectService"/>
+        <property name="wsdl-ObjectService" location="xml-resources/web-service-references/ObjectService/wsdl/36.50.135.242_2221/ObjectService.wsdl"/>
+        <wsimport sourcedestdir="${build.generated.dir}/jax-wsCache/ObjectService" destdir="${build.generated.dir}/jax-wsCache/ObjectService" wsdl="${wsdl-ObjectService}" catalog="catalog.xml" encoding="${source.encoding}" extension="true" verbose="true" fork="false" wsdlLocation="http://36.50.135.242:2221/ObjectService?wsdl" xnocompile="true" xendorsed="true">
+            <depends file="${wsdl-ObjectService}"/>
+            <produces dir="${build.generated.dir}/jax-wsCache/ObjectService"/>
+        </wsimport>
+        <copy todir="${build.generated.sources.dir}/jax-ws">
+            <fileset dir="${build.generated.dir}/jax-wsCache/ObjectService">
+                <include name="**/*.java"/>
+            </fileset>
+        </copy>
+    </target>
+    <target name="wsimport-client-clean-ObjectService" depends="-init-project">
+        <delete dir="${build.generated.dir}/jax-wsCache/ObjectService"/>
+        <delete dir="${build.generated.sources.dir}/jax-ws/ptit/dblab/judge/network/server/soap"/>
+    </target>
+    <target name="wsimport-client-generate" depends="wsimport-client-DataService, wsimport-client-CharacterService, wsimport-client-ObjectService"/>
 </project>
